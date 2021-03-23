@@ -24,6 +24,10 @@ const Login = () => {
     navigation.navigate("Register");
   }
 
+  function handleNavigateHome() {
+    navigation.navigate("Home");
+  }
+
   function handleCloseApplication() {
     BackHandler.exitApp();
   }
@@ -66,7 +70,7 @@ const Login = () => {
                 Registrar
               </Text>
             </FormButton>
-            <FormButton activeOpacity={0.7} onPress={() => {}}>
+            <FormButton activeOpacity={0.7} onPress={handleNavigateHome}>
               <Text style={{ color: "#fff", textAlign: "center" }}>Entrar</Text>
             </FormButton>
           </ContentBtnForms>
