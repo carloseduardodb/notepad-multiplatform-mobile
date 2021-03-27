@@ -1,8 +1,8 @@
 import React from "react";
-import { FlatList, View } from "react-native";
 import { Screen, Body } from "./styles";
 import TopMenu from "../../Components/TopMenu";
 import { useNavigation } from "@react-navigation/native";
+import ListNotes from "../../Components/ListNotes";
 
 const Home = () => {
   const navigator = useNavigation();
@@ -15,7 +15,9 @@ const Home = () => {
   return (
     <Screen>
       <TopMenu />
-      <Body></Body>
+      <Body>
+        <ListNotes></ListNotes>
+      </Body>
     </Screen>
   );
 };

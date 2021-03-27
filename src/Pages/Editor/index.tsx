@@ -1,11 +1,20 @@
 import React from "react";
 import { Text } from "react-native";
+import TopMenu from "../../Components/TopMenu";
+import { Screen, Title, Content } from "./styles";
 
 const Editor = () => {
   return (
-    <>
-      <Text>Editor</Text>
-    </>
+    <Screen>
+      <TopMenu />
+      <Title placeholder="O seu título pode ficar aqui uai" />
+      <Content
+        multiline={true}
+        placeholder="Digite as suas lamentações aqui, ou suas tarefas tanto faz"
+        numberOfLines={25}
+        textAlignVertical="top"
+      />
+    </Screen>
   );
 };
 
