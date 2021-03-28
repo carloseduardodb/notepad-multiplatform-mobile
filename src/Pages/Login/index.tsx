@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, View, BackHandler } from "react-native";
 import {
   Screen,
@@ -18,6 +18,11 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 
 const Login = () => {
+  const [credentials, setCredentials] = useState({
+    email: "",
+    password: "",
+  });
+
   const navigation = useNavigation();
 
   function handleNavigateRegister() {

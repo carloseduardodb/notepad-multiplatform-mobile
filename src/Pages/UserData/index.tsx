@@ -8,12 +8,16 @@ const UserData = () => {
   return (
     <Screen>
       <TopMenu></TopMenu>
-      <View style={{ alignItems: "center", paddingVertical: 10 }}>
+      <View
+        style={{
+          alignItems: "center",
+          paddingVertical: 10,
+        }}
+      >
         <View style={styles.content_image}>
           <PersonIcon
             source={{
-              uri:
-                "https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=749&q=80",
+              uri: "https://avatars.githubusercontent.com/u/50811913?v=4",
             }}
           />
         </View>

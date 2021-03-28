@@ -16,6 +16,7 @@ export const AboutButton = styled.TouchableOpacity`
   background-color: #f6644d;
   padding: 8px;
   border-radius: 5px;
+  elevation: 3;
 `;
 
 export const Text = styled.Text`
