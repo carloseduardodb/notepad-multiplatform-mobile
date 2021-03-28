@@ -1,15 +1,67 @@
 import React from "react";
-import { Text } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 import TopMenu from "../../Components/TopMenu";
-import { Screen } from "./styles";
+import { Screen, PersonIcon, ButtonsData, ButtonLogout } from "./styles";
+import { Feather as Icon } from "@expo/vector-icons";
 
 const UserData = () => {
   return (
     <Screen>
       <TopMenu></TopMenu>
-      <Text>Essa é a pagina de edição de dados do usuário</Text>
+      <View style={{ alignItems: "center", paddingVertical: 10 }}>
+        <View style={styles.content_image}>
+          <PersonIcon
+            source={{
+              uri:
+                "https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=749&q=80",
+            }}
+          />
+        </View>
+        <ButtonsData activeOpacity={0.8} style={styles.align}>
+          <Text style={styles.text}>Nome</Text>
+          <View style={styles.align}>
+            <Text style={styles.text}>Carlos Eduardo</Text>
+            <Icon color="#fff" name="chevron-right" size={20} />
+          </View>
+        </ButtonsData>
+        <ButtonsData activeOpacity={0.8} style={styles.align}>
+          <Text style={styles.text}>Senha</Text>
+          <View style={styles.align}>
+            <Text style={styles.text}>***********</Text>
+            <Icon color="#fff" name="chevron-right" size={20} />
+          </View>
+        </ButtonsData>
+        <ButtonLogout activeOpacity={0.8} style={styles.align}>
+          <Text style={styles.text}>Logout</Text>
+          <View style={styles.align}>
+            <Icon color="#fff" name="log-out" size={20} />
+          </View>
+        </ButtonLogout>
+      </View>
     </Screen>
   );
 };
+
+const styles = StyleSheet.create({
+  align: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+
+  text: {
+    color: "#fcf9f6",
+    fontWeight: "800",
+    fontSize: 13,
+  },
+
+  content_image: {
+    borderWidth: 3,
+    borderRadius: 50,
+    overflow: "hidden",
+    borderColor: "#FFD35E",
+    marginVertical: 20,
+    elevation: 5,
+  },
+});
 
 export default UserData;

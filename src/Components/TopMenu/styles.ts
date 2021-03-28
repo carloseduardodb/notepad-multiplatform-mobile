@@ -11,7 +11,7 @@ export const MenuBar = styled.View`
   align-items: center;
 `;
 
-export const LogoutButton = styled.TouchableOpacity`
+export const AboutButton = styled.TouchableOpacity`
   flex-direction: row;
   background-color: #f6644d;
   padding: 8px;

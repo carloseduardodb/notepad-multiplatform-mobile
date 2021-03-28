@@ -1,5 +1,5 @@
 import React from "react";
-import { MenuBar, LogoutButton, Text, Logo, Title, SubTitle } from "./styles";
+import { MenuBar, AboutButton, Text, Logo, Title, SubTitle } from "./styles";
 import { Feather as Icon } from "@expo/vector-icons";
 
 import { useNavigation } from "@react-navigation/native";
@@ -13,10 +13,9 @@ const TopMenu = () => {
 
   return (
     <MenuBar>
-      <LogoutButton onPress={handleLogout}>
-        <Icon style={{ color: "white" }} name="log-out" size={20} />
-        <Text>Logout</Text>
-      </LogoutButton>
+      <AboutButton onPress={handleLogout}>
+        <Icon style={{ color: "white" }} name="info" size={20} />
+      </AboutButton>
       <Logo>
         <Title>Notepad</Title>
         <SubTitle>Multiplatform</SubTitle>

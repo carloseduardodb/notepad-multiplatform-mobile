@@ -6,4 +6,5 @@ export const Button = styled.TouchableOpacity`
   margin-bottom: 40px;
   padding: 10px;
   box-shadow: 10px 10px 3px black;
+  elevation: 5;
 `;
