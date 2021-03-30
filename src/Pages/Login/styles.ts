@@ -32,7 +32,7 @@ export const Form = styled.View`
   margin-bottom: 10px;
   padding: 10px;
 `;
-
+/*
 export const Input = styled.TextInput`
   border-bottom-color: black;
   border-bottom-width: 2px;
@@ -45,6 +45,7 @@ export const TitleInput = styled.Text`
   font-size: 15px;
   margin: 3px 0;
 `;
+*/
 
 export const ButtonRecoveryPass = styled(RectButton)`
   color: #f6644d;
