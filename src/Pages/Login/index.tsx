@@ -54,15 +54,27 @@ const Login: React.FC = () => {
       password: password,
     };
 
-    api.post<dataUser>("user/login", hidratedData).then((response) => {
-      const { data } = response;
-      if (!!!data.user.email_verified_at) {
-        console.log(data);
-        Alert.alert("Seu email não esta verificado!");
-      } else {
-        Alert.alert("Seu email está verificado!");
-      }
-    });
+    /*async function saveUserToken(){
+      await 
+    }*/
+
+    api
+      .post<dataUser>("user/login", hidratedData)
+      .then((response) => {
+        const { data } = response;
+        data.token;
+        if (!!!data.user.email_verified_at) {
+          console.log(data);
+          Alert.alert("Seu email não esta verificado!");
+        } else {
+          Alert.alert("Seu email está verificado!");
+        }
+      })
+      .catch((error) => {
+        Alert.alert(
+          "Você está sem conexão com a internet, ou o servidor está offline!"
+        );
+      }); //trated errors
   }
 
   const handleSubmit = useCallback(async (data: credentials, { reset }) => {

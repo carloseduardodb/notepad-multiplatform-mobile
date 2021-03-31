@@ -63,7 +63,7 @@ const Routes = () => {
   return (
     <NavigationContainer>
       <AppStack.Navigator
-        initialRouteName="VerifyAccount"
+        initialRouteName="Login"
         headerMode="none"
         screenOptions={{ cardStyle: { backgroundColor: "#F3F8F2" } }}
       >

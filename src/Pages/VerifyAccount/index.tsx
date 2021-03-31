@@ -15,7 +15,7 @@ class VerifyAccount extends React.PureComponent {
         }}
       >
         <LottieViewAnimate source={animation} loop autoPlay />
-        <InputConfirmationCode />
+        <InputConfirmationCode email="olá" />
       </View>
     );
   }
