@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { RectButton, TouchableOpacity } from "react-native-gesture-handler";
+import { RectButton } from "react-native-gesture-handler";
 
 export const Screen = styled.View`
   height: 100%;
@@ -28,24 +28,10 @@ export const SubTitle = styled.Text`
   font-family: Ubuntu_300Light;
 `;
 
-export const Form = styled.View`
+export const FormContent = styled.View`
   margin-bottom: 10px;
   padding: 10px;
 `;
-/*
-export const Input = styled.TextInput`
-  border-bottom-color: black;
-  border-bottom-width: 2px;
-  border-bottom-color: #f6644d;
-  margin-bottom: 10px;
-  font-size: 15px;
-`;
-
-export const TitleInput = styled.Text`
-  font-size: 15px;
-  margin: 3px 0;
-`;
-*/
 
 export const ButtonRecoveryPass = styled(RectButton)`
   color: #f6644d;
@@ -56,7 +42,7 @@ export const ContentBtnForms = styled.View`
   justify-content: space-between;
 `;
 
-export const FormButton = styled(TouchableOpacity)`
+export const FormButton = styled.TouchableOpacity`
   margin-top: 25px;
   background-color: #2b2b2b;
   padding: 10px;

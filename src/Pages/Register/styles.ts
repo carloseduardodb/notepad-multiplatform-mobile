@@ -1,5 +1,4 @@
 import styled from "styled-components/native";
-import { RectButton } from "react-native-gesture-handler";
 
 export const Screen = styled.View`
   height: 100%;
@@ -28,7 +27,7 @@ export const SubTitle = styled.Text`
   font-family: Ubuntu_300Light;
 `;
 
-export const Form = styled.View`
+export const FormContent = styled.View`
   margin-bottom: 10px;
   padding: 10px;
 `;
@@ -51,7 +50,7 @@ export const ContentBtnForms = styled.View`
   justify-content: flex-end;
 `;
 
-export const FormButton = styled(RectButton)`
+export const FormButton = styled.TouchableOpacity`
   margin-top: 25px;
   background-color: #2b2b2b;
   padding: 10px;

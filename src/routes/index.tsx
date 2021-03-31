@@ -9,6 +9,7 @@ import Register from "../Pages/Register";
 import Home from "../Pages/Home";
 import Editor from "../Pages/Editor";
 import UserData from "../Pages/UserData";
+import VerifyAccount from "../Pages/VerifyAccount";
 
 //navigations
 import { createStackNavigator } from "@react-navigation/stack";
@@ -62,12 +63,13 @@ const Routes = () => {
   return (
     <NavigationContainer>
       <AppStack.Navigator
-        initialRouteName="Login"
+        initialRouteName="VerifyAccount"
         headerMode="none"
         screenOptions={{ cardStyle: { backgroundColor: "#F3F8F2" } }}
       >
         <AppStack.Screen name="Home" component={MyTabsButton} />
         <AppStack.Screen name="Login" component={Login} />
+        <AppStack.Screen name="VerifyAccount" component={VerifyAccount} />
         <AppStack.Screen name="Register" component={Register} />
       </AppStack.Navigator>
     </NavigationContainer>

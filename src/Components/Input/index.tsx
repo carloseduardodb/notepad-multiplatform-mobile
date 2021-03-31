@@ -1,18 +1,18 @@
 import React, { useEffect, useRef } from "react";
 import { TextInputProps, View, Text } from "react-native";
 import { useField } from "@unform/core";
-import { FormInput, TitleInput } from "./styles";
+import { FormInput, TitleInput, ErrorMessage } from "./styles";
 
 interface InputProps extends TextInputProps {
   name: string;
-  icon: string;
+  title: string;
 }
 
 interface InputValueReferences {
   value: string;
 }
 
-const Input: React.FC<InputProps> = ({ name, icon, ...rest }) => {
+const Input: React.FC<InputProps> = ({ name, title, ...rest }) => {
   const inputElementRef = useRef<any>(null);
   const { registerField, defaultValue = "", fieldName, error } = useField(name);
   const inputValueRef = useRef<InputValueReferences>({ value: defaultValue });
@@ -32,10 +32,18 @@ const Input: React.FC<InputProps> = ({ name, icon, ...rest }) => {
       },
     });
   }, [fieldName, registerField]);
-
   return (
     <View>
-      <TitleInput>Seu email:</TitleInput>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <TitleInput>{title}:</TitleInput>
+        <ErrorMessage>{error && error}</ErrorMessage>
+      </View>
       <FormInput
         ref={inputElementRef}
         defaultValue={defaultValue}
@@ -44,7 +52,8 @@ const Input: React.FC<InputProps> = ({ name, icon, ...rest }) => {
         }}
         {...rest}
       />
-      <Text>{error}</Text>
     </View>
   );
 };
+
+export default Input;
