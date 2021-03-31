@@ -10,6 +10,7 @@ import Home from "../Pages/Home";
 import Editor from "../Pages/Editor";
 import UserData from "../Pages/UserData";
 import VerifyAccount from "../Pages/VerifyAccount";
+import Decision from "../Pages/Decision";
 
 //navigations
 import { createStackNavigator } from "@react-navigation/stack";
@@ -63,10 +64,11 @@ const Routes = () => {
   return (
     <NavigationContainer>
       <AppStack.Navigator
-        initialRouteName="Login"
+        initialRouteName="Decision"
         headerMode="none"
         screenOptions={{ cardStyle: { backgroundColor: "#F3F8F2" } }}
       >
+        <AppStack.Screen name="Decision" component={Decision} />
         <AppStack.Screen name="Home" component={MyTabsButton} />
         <AppStack.Screen name="Login" component={Login} />
         <AppStack.Screen name="VerifyAccount" component={VerifyAccount} />

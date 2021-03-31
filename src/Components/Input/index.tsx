@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { TextInputProps, View, Text } from "react-native";
+import { TextInputProps, View } from "react-native";
 import { useField } from "@unform/core";
 import { FormInput, TitleInput, ErrorMessage } from "./styles";
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SafeAreaView, Text, StyleSheet } from "react-native";
+import { SafeAreaView, Text, StyleSheet, Alert } from "react-native";
 
 import {
   CodeField,
@@ -10,20 +10,29 @@ import {
 import { Title, Button, ButtonText } from "./styles";
 
 import api from "../../services/api";
+import { useNavigation } from "@react-navigation/native";
 
 interface dataUser {
   email: string;
+  token: string;
 }
 
 const CELL_COUNT = 7;
 
-const InputConfirmationCode: React.FC<dataUser> = ({ email, ...rest }) => {
+const InputConfirmationCode: React.FC<dataUser> = ({
+  email,
+  token,
+  ...rest
+}) => {
   const [value, setValue] = useState("");
   const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
     setValue,
   });
+
+  //diretions routes and navigation
+  const navigation = useNavigation();
 
   function handleSendCode() {
     const hidrated_data = {
@@ -32,9 +41,12 @@ const InputConfirmationCode: React.FC<dataUser> = ({ email, ...rest }) => {
     };
     api.post("user/code-validation", hidrated_data).then((response) => {
       if (response.status === 201) {
-        //enviar usuário para a tela de inicio
+        navigation.navigate("Home");
       } else {
-        //retornar mensagem de erro na verificação de conta ou codigo errado
+        Alert.alert(
+          "Erro",
+          "Ooooops algo de errado não esta certo! Seu código está errado!"
+        );
       }
     });
   }

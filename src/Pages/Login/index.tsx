@@ -23,6 +23,7 @@ import ModalForgoutPassword from "../../Components/ModalForgoutPassword";
 import * as Yup from "yup";
 import api from "../../services/api";
 import * as Device from "expo-device";
+import * as SecureStore from "expo-secure-store";
 
 interface credentials {
   email: string;
@@ -42,10 +43,21 @@ interface dataUser {
   token: string;
 }
 
-const Login: React.FC = () => {
+const Login = () => {
+  //diretions routes and navigation
+  const navigation = useNavigation();
+
+  function handleNavigate(route: string) {
+    if (route === "exit") {
+      BackHandler.exitApp();
+    }
+    navigation.navigate(route);
+  }
+
+  //ref form to validation
   const formRef = useRef<FormHandles>(null);
 
-  async function seedData(data: credentials) {
+  async function sendData(data: credentials) {
     const { email, password } = data;
 
     const hidratedData = {
@@ -54,36 +66,36 @@ const Login: React.FC = () => {
       password: password,
     };
 
-    /*async function saveUserToken(){
-      await 
-    }*/
+    async function saveUserToken(data: dataUser) {
+      console.log(data);
+      await SecureStore.setItemAsync("user_token", data.token);
+      await SecureStore.setItemAsync("user_email", data.user.email);
+    }
 
     api
       .post<dataUser>("user/login", hidratedData)
       .then((response) => {
         const { data } = response;
-        data.token;
+        saveUserToken(data);
         if (!!!data.user.email_verified_at) {
-          console.log(data);
-          Alert.alert("Seu email não esta verificado!");
+          handleNavigate("VerifyAccount");
         } else {
-          Alert.alert("Seu email está verificado!");
+          handleNavigate("Home");
         }
       })
       .catch((error) => {
         Alert.alert(
-          "Você está sem conexão com a internet, ou o servidor está offline!"
+          "Alerta",
+          "Sua senha ou email estão incorretos, ou você está offline!"
         );
-      }); //trated errors
+      });
   }
 
   const handleSubmit = useCallback(async (data: credentials, { reset }) => {
     try {
       formRef.current?.setErrors({});
       const schema = Yup.object().shape({
-        email: Yup.string()
-          .required("E-mail obrigatório!")
-          .email("Digite um e-mail válido!"),
+        email: Yup.string().email("Digite um e-mail válido!"),
         password: Yup.string()
           .min(8, "Minimo de 8 caracteres!")
           .max(150, "Máximo de 150 caracteres!")
@@ -94,8 +106,8 @@ const Login: React.FC = () => {
         abortEarly: false,
       });
 
-      await seedData(data);
-      reset();
+      await sendData(data);
+      //reset(); usar dps
 
       //navigation.navigate("Dashboard");
     } catch (err) {
@@ -106,21 +118,9 @@ const Login: React.FC = () => {
     }
   }, []);
 
-  //diretions routes
-  const navigation = useNavigation();
-  function handleNavigateRegister() {
-    navigation.navigate("Register");
-  }
-  function handleNavigateHome() {
-    navigation.navigate("Home");
-  }
-  function handleCloseApplication() {
-    BackHandler.exitApp();
-  }
-
   return (
     <Screen>
-      <TouchableOpacity onPress={handleCloseApplication}>
+      <TouchableOpacity onPress={() => handleNavigate("exit")}>
         <Icon name="x" size={25} />
       </TouchableOpacity>
 
@@ -135,7 +135,6 @@ const Login: React.FC = () => {
         <Form ref={formRef} onSubmit={handleSubmit}>
           <FormContent>
             <Input
-              value="carloscangere@hotmail.co"
               title="Digite seu email"
               name="email"
               placeholder="example@domain.com"
@@ -148,7 +147,12 @@ const Login: React.FC = () => {
             />
             <ModalForgoutPassword status={true} />
             <ContentBtnForms>
-              <FormButton activeOpacity={0.7} onPress={handleNavigateRegister}>
+              <FormButton
+                activeOpacity={0.7}
+                onPress={() => {
+                  handleNavigate("Register");
+                }}
+              >
                 <Text style={{ color: "#fff", textAlign: "center" }}>
                   Registrar
                 </Text>
