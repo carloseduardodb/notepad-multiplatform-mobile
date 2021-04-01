@@ -1,17 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Alert } from "react-native";
 import { Screen, Body } from "./styles";
 import TopMenu from "../../Components/TopMenu";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import ListNotes from "../../Components/ListNotes";
+import States from "../../Class/States";
+
+const teste = 5;
 
 const Home = () => {
-  const navigator = useNavigation();
-
-  function handleLogout() {
-    //por enquanto
-    navigator.goBack();
-  }
-
   return (
     <Screen>
       <TopMenu />
