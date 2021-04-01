@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 
-export const Screen = styled.View`
+export const Screen = styled.SafeAreaView`
   padding: 10% 5%;
   height: 100%;
   background-color: #f3f8f2;

@@ -24,9 +24,11 @@ const Decision = () => {
              * Evitar a fadiga de puxar os dados localmente sempre que mudar de rota.
              * */
             UserData.user = response;
+            UserData.token = result;
             navigation.navigate("Home");
           } else {
             //envia para tela de login
+            UserData.token = result;
             navigation.navigate("VerifyAccount");
           }
         })

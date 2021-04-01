@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { SafeAreaView, Text, StyleSheet, Alert } from "react-native";
-
+import UserData from "../../Class/UserData";
 import {
   CodeField,
   Cursor,
@@ -39,16 +39,29 @@ const InputConfirmationCode: React.FC<dataUser> = ({
       email: email,
       code: value,
     };
-    api.post("user/code-validation", hidrated_data).then((response) => {
-      if (response.status === 201) {
-        navigation.navigate("Home");
-      } else {
-        Alert.alert(
-          "Erro",
-          "Ooooops algo de errado não esta certo! Seu código está errado!"
-        );
-      }
-    });
+    const config = {
+      Accept: "application/json",
+      headers: {
+        Authorization: `Bearer ${UserData.token}`,
+        "Content-Type": "application/json",
+      },
+    };
+    api
+      .post("user/code-validation", hidrated_data, config)
+      .then((response) => {
+        if (response.status === 201) {
+          navigation.navigate("Home");
+        } else {
+          Alert.alert(
+            "Erro",
+            "Ooooops algo de errado não esta certo! Seu código está errado!"
+          );
+        }
+      })
+      .catch((error) => {
+        const teste = error.response.data.errors.code;
+        Alert.alert("Alerta", String(teste));
+      });
   }
 
   return (

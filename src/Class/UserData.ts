@@ -12,6 +12,7 @@ interface data {
 
 class UserData {
   static user: data | Object = {};
+  static token: string | null = "";
 }
 
 export default UserData;

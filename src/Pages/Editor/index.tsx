@@ -7,10 +7,10 @@ const Editor = () => {
   return (
     <Screen>
       <TopMenu />
-      <Title placeholder="O seu título pode ficar aqui uai" />
+      <Title placeholder="O seu título pode ficar aqui uai!" />
       <Content
         multiline={true}
-        placeholder="Digite as suas lamentações aqui, ou suas tarefas tanto faz"
+        placeholder="Digite as suas notas aqui!"
         numberOfLines={25}
         textAlignVertical="top"
       />

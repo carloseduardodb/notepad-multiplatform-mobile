@@ -53,8 +53,8 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    color: "#fcf9f6",
-    fontWeight: "800",
+    color: "#ffffff",
+    fontWeight: "bold",
     fontSize: 13,
   },
 

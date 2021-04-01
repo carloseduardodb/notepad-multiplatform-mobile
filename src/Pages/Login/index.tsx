@@ -48,7 +48,7 @@ const Login = () => {
   const navigation = useNavigation();
 
   function handleNavigate(route: string) {
-    if (route === "exit") {
+    if (route == "exit") {
       BackHandler.exitApp();
     }
     navigation.navigate(route);

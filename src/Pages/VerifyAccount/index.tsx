@@ -22,7 +22,7 @@ const VerifyAccount = () => {
       setEmail(result_email);
       setToken(result_token);
     } else {
-      Alert.alert("Você não deveria estar aqui");
+      Alert.alert("Você não deveria estar nesta página!");
       navigation.navigate("Login");
     }
   }
