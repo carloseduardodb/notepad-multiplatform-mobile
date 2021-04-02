@@ -13,10 +13,11 @@ interface Note {
 }
 
 interface Notes {
-  notes: Note;
+  notes: Note | any;
 }
 
 const ListNotes: React.FC<Notes> = ({ notes, ...rest }) => {
+  const navigator = useNavigation();
   return (
     <SafeAreaView>
       <FlatList
@@ -27,7 +28,12 @@ const ListNotes: React.FC<Notes> = ({ notes, ...rest }) => {
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => {
           return (
-            <Item key={item.id} onPress={() => {}}>
+            <Item
+              key={item.id}
+              onPress={() => {
+                navigator.navigate("Editor", item);
+              }}
+            >
               <Icon
                 name="sticky-note-o"
                 style={{ paddingHorizontal: 10, color: "#43C3A0" }}

@@ -8,7 +8,7 @@ import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import Home from "../Pages/Home";
 import Editor from "../Pages/Editor";
-import UserData from "../Pages/UserData";
+import Profile from "../Pages/Profile";
 import VerifyAccount from "../Pages/VerifyAccount";
 import Decision from "../Pages/Decision";
 
@@ -58,7 +58,7 @@ function MyTabsButton() {
           tabBarIcon: () => <ButtonAdd />,
         })}
       />
-      <AppBottomTab.Screen name="Meu Perfil" component={UserData} />
+      <AppBottomTab.Screen name="Meu Perfil" component={Profile} />
     </AppBottomTab.Navigator>
   );
 }

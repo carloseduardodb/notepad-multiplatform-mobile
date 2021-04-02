@@ -38,7 +38,7 @@ const Editor = () => {
           setTitle("");
         })
         .catch((e) => {
-          console.log(e);
+          Alert.alert(e.message);
         });
     } else {
       Alert.alert("Ooooooops", "Não é possivel não salvar nada.");

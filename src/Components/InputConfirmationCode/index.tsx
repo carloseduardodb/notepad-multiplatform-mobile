@@ -59,8 +59,7 @@ const InputConfirmationCode: React.FC<dataUser> = ({
         }
       })
       .catch((error) => {
-        const teste = error.response.data.errors.code;
-        Alert.alert("Alerta", String(teste));
+        Alert.alert("Alerta", String(error.response.data));
       });
   }
 

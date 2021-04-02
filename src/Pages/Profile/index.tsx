@@ -3,8 +3,11 @@ import { Text, View, StyleSheet } from "react-native";
 import TopMenu from "../../Components/TopMenu";
 import { Screen, PersonIcon, ButtonsData, ButtonLogout } from "./styles";
 import { Feather as Icon } from "@expo/vector-icons";
+import UserData from "../../Class/UserData";
+import UpdateName from "../../Modals/UpdateName";
+import UpdatePassword from "../../Modals/UpdatePassword";
 
-const UserData = () => {
+const Profile = () => {
   return (
     <Screen>
       <TopMenu></TopMenu>
@@ -21,20 +24,8 @@ const UserData = () => {
             }}
           />
         </View>
-        <ButtonsData activeOpacity={0.8} style={styles.align}>
-          <Text style={styles.text}>Nome</Text>
-          <View style={styles.align}>
-            <Text style={styles.text}>Carlos Eduardo</Text>
-            <Icon color="#fff" name="chevron-right" size={20} />
-          </View>
-        </ButtonsData>
-        <ButtonsData activeOpacity={0.8} style={styles.align}>
-          <Text style={styles.text}>Senha</Text>
-          <View style={styles.align}>
-            <Text style={styles.text}>***********</Text>
-            <Icon color="#fff" name="chevron-right" size={20} />
-          </View>
-        </ButtonsData>
+        <UpdateName status={true} />
+        <UpdatePassword status={true} />
         <ButtonLogout activeOpacity={0.8} style={styles.align}>
           <Text style={styles.text}>Logout</Text>
           <View style={styles.align}>
@@ -68,4 +59,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default UserData;
+export default Profile;

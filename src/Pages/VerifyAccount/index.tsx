@@ -27,8 +27,6 @@ const VerifyAccount = () => {
     }
   }
   const dataUserLocal = getValueLocal("user_token", "user_email");
-  console.log(email, token);
-
   return (
     <View
       style={{

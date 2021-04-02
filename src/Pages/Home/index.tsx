@@ -42,7 +42,6 @@ const Home = () => {
         );
       })
       .catch((error) => {
-        console.log("error");
         Alert.alert("Erro", error.message);
       });
   }, [refresh]);

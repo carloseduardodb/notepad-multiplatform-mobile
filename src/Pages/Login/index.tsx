@@ -19,7 +19,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Form } from "@unform/mobile";
 import { FormHandles } from "@unform/core";
 import Input from "../../Components/Input";
-import ModalForgoutPassword from "../../Components/ModalForgoutPassword";
+import ModalForgotPassword from "../../Modals/ForgotPassword";
 import * as Yup from "yup";
 import api from "../../services/api";
 import * as Device from "expo-device";
@@ -67,7 +67,6 @@ const Login = () => {
     };
 
     async function saveUserToken(data: dataUser) {
-      console.log(data);
       await SecureStore.setItemAsync("user_token", data.token);
       await SecureStore.setItemAsync("user_email", data.user.email);
     }
@@ -145,7 +144,7 @@ const Login = () => {
               secureTextEntry={true}
               placeholder="**************"
             />
-            <ModalForgoutPassword status={true} />
+            <ModalForgotPassword status={true} />
             <ContentBtnForms>
               <FormButton
                 activeOpacity={0.7}
