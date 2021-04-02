@@ -40,3 +40,17 @@ export const SubTitle = styled.Text`
   font-size: 10px;
   font-family: Ubuntu_300Light;
 `;
+
+export const ButtonSend = styled.TouchableOpacity`
+  flex-direction: row;
+  background-color: #43c3a0;
+  padding: 8px;
+  border-radius: 5px;
+  elevation: 3;
+`;
+
+export const ButtonSendText = styled.Text`
+  font-size: 15px;
+  font-weight: 900;
+  color: #fff;
+`;

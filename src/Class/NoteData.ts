@@ -1,5 +1,4 @@
 class NoteData {
-  static title: string;
-  static text: string;
+  static update: boolean = false;
 }
 export default NoteData;

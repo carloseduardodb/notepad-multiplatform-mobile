@@ -72,7 +72,7 @@ const Routes = () => {
         screenOptions={{ cardStyle: { backgroundColor: "#F3F8F2" } }}
       >
         <AppStack.Screen name="Decision" component={Decision} />
-        <AppStack.Screen target="_blank" name="Home" component={MyTabsButton} />
+        <AppStack.Screen name="Home" component={MyTabsButton} />
         <AppStack.Screen name="Login" component={Login} />
         <AppStack.Screen name="VerifyAccount" component={VerifyAccount} />
         <AppStack.Screen name="Register" component={Register} />

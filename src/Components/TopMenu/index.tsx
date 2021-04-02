@@ -1,6 +1,20 @@
 import React from "react";
-import { MenuBar, AboutButton, Text, Logo, Title, SubTitle } from "./styles";
+import { Alert, ToastAndroid } from "react-native";
+import {
+  MenuBar,
+  AboutButton,
+  Text,
+  Logo,
+  Title,
+  SubTitle,
+  ButtonSend,
+  ButtonSendText,
+} from "./styles";
 import { Feather as Icon } from "@expo/vector-icons";
+import { View } from "react-native";
+import api from "../../services/api";
+import UserData from "../../Class/UserData";
+import NoteData from "../../Class/NoteData";
 
 import { useNavigation } from "@react-navigation/native";
 
@@ -23,5 +37,4 @@ const TopMenu = () => {
     </MenuBar>
   );
 };
-
 export default TopMenu;
