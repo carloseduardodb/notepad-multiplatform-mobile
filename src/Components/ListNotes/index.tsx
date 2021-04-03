@@ -8,6 +8,7 @@ import UserData from "../../Class/UserData";
 
 interface Note {
   id: string;
+  title: string;
   created_at: string;
   text: string;
 }
@@ -40,7 +41,7 @@ const ListNotes: React.FC<Notes> = ({ notes, ...rest }) => {
                 size={45}
               />
               <TextContainer>
-                <TitleNote>{String(item.created_at)}</TitleNote>
+                <TitleNote>{String(item.title)}</TitleNote>
                 <Note>
                   {item.text.length < 35
                     ? `${item.text}`

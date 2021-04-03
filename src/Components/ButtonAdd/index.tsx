@@ -8,7 +8,7 @@ const ButtonAdd = () => {
   const navigator = useNavigation();
 
   function handleClickButton() {
-    navigator.navigate("Editor");
+    navigator.navigate("Editor", { id: "", text: "", title: "" });
   }
 
   return (

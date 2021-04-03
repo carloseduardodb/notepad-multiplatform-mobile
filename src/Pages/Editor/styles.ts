@@ -24,4 +24,5 @@ export const Button = styled.TouchableOpacity`
   padding: 10px;
   border-radius: 5px;
   margin-top: 10px;
+  width: 40%;
 `;
