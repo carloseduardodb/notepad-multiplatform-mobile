@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   ModalProps,
   Alert,
@@ -10,16 +10,53 @@ import {
 } from "react-native";
 import Input from "../../Components/Input";
 import { Feather as Icon } from "@expo/vector-icons";
+import { Form } from "@unform/mobile";
+import { FormHandles } from "@unform/core";
+import api from "../../services/api";
 
 interface forgoutPasswordProps extends ModalProps {
   status: boolean;
+}
+
+interface credentials {
+  current_email: string;
 }
 
 const ModalForgoutPassword: React.FC<forgoutPasswordProps> = ({
   status,
   ...rest
 }) => {
+  //ref form to validation
+  const formRef = useRef<FormHandles>(null);
   const [modalVisible, setModalVisible] = useState(false);
+
+  function handleSubmit(data: credentials) {
+    console.log(data.current_email.valueOf());
+    if (data.current_email.length > 4) {
+      api
+        .post(
+          "user/forgot-the-password",
+          { email: data.current_email.valueOf() },
+          { headers: { "Content-Type": "application/json" } }
+        )
+        .then((response) => {
+          Alert.alert(
+            "Sucesso",
+            "Verifique sua caixa de email, foi enviado para você um código para a recuperação de senha!"
+          );
+        })
+        .catch((error) => {
+          console.log(error);
+          Alert.alert(
+            "Erro",
+            "Ocorreu um erro ao tentar enviar um email de confirmação! Verifique se seu email está correto"
+          );
+        });
+    } else {
+      Alert.alert("Erro", "Seu email é muito curto!");
+    }
+  }
+
   return (
     <>
       <View style={styles.centeredView}>
@@ -34,24 +71,31 @@ const ModalForgoutPassword: React.FC<forgoutPasswordProps> = ({
         >
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
-              <TouchableOpacity
-                onPress={() => setModalVisible(!modalVisible)}
-                style={{ position: "absolute", padding: 10, right: 0 }}
-              >
-                <Icon name="x" size={15} />
-              </TouchableOpacity>
-              <Input
-                name="current_email"
-                title="Digite o seu email"
-                placeholder="examples@example.com"
-              />
-              <View
-                style={{ justifyContent: "flex-end", alignItems: "flex-end" }}
-              >
-                <TouchableOpacity style={[styles.button, styles.buttonSend]}>
-                  <Text style={styles.textStyle}>Recuperar</Text>
+              <Form ref={formRef} onSubmit={handleSubmit}>
+                <TouchableOpacity
+                  onPress={() => setModalVisible(!modalVisible)}
+                  style={{ position: "absolute", padding: 10, right: 0 }}
+                >
+                  <Icon name="x" size={15} />
                 </TouchableOpacity>
-              </View>
+                <Input
+                  name="current_email"
+                  title="Digite o seu email"
+                  placeholder="examples@example.com"
+                />
+                <View
+                  style={{ justifyContent: "flex-end", alignItems: "flex-end" }}
+                >
+                  <TouchableOpacity
+                    onPress={() => {
+                      formRef.current?.submitForm();
+                    }}
+                    style={[styles.button, styles.buttonSend]}
+                  >
+                    <Text style={styles.textStyle}>Recuperar</Text>
+                  </TouchableOpacity>
+                </View>
+              </Form>
             </View>
           </View>
         </Modal>
