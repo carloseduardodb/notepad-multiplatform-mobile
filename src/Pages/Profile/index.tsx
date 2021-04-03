@@ -29,6 +29,7 @@ const Profile = () => {
       .then((response) => {
         deleteUserDataLocal();
         Alert.alert("Sucesso", "Sucesso ao fazer logout!");
+        navigation.navigate("Login");
       })
       .catch((error) => {
         Alert.alert("Erro", error.message);

@@ -41,7 +41,7 @@ const ModalForgoutPassword: React.FC<forgoutPasswordProps> = ({
                 <Icon name="x" size={15} />
               </TouchableOpacity>
               <Input
-                name="email"
+                name="current_email"
                 title="Digite o seu email"
                 placeholder="examples@example.com"
               />

@@ -25,6 +25,8 @@ import api from "../../services/api";
 import * as Device from "expo-device";
 import * as SecureStore from "expo-secure-store";
 
+import UserData from "../../Class/UserData";
+
 interface credentials {
   email: string;
   password: string;
@@ -74,6 +76,8 @@ const Login = () => {
     api
       .post<dataUser>("user/login", hidratedData)
       .then((response) => {
+        UserData.user = response.data.user;
+        UserData.token = response.data.token;
         const { data } = response;
         saveUserToken(data);
         if (!!!data.user.email_verified_at) {

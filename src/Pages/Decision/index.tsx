@@ -23,7 +23,7 @@ const Decision = () => {
              * dados do usuário em um local estatico.
              * Evitar a fadiga de puxar os dados localmente sempre que mudar de rota.
              * */
-            UserData.user = response;
+            UserData.user = response.data.user;
             UserData.token = result;
             navigation.navigate("Home");
           } else {

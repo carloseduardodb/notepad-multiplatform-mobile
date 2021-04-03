@@ -18,16 +18,13 @@ interface forgoutPasswordProps extends ModalProps {
   status: boolean;
 }
 
-interface data {
-  status: string;
-  user: {
-    id: number;
-    name: string;
-    email: string;
-    email_verified_at: null | boolean;
-    created_at: Date;
-    updated_at: Date;
-  };
+interface user {
+  id: number;
+  name: string;
+  email: string;
+  email_verified_at: null | boolean;
+  created_at: Date;
+  updated_at: Date;
 }
 
 const ModalUpdateName: React.FC<forgoutPasswordProps> = ({
@@ -65,7 +62,7 @@ const ModalUpdateName: React.FC<forgoutPasswordProps> = ({
       });
   }
 
-  const user = UserData.user.data as data;
+  const user = UserData.user as user;
 
   return (
     <>
@@ -125,7 +122,7 @@ const ModalUpdateName: React.FC<forgoutPasswordProps> = ({
       >
         <Text style={styles.text}>Nome</Text>
         <View style={styles.align}>
-          <Text style={styles.text}>{user.user.name}</Text>
+          <Text style={styles.text}>{user.name}</Text>
           <Icon color="#fff" name="chevron-right" size={20} />
         </View>
       </ButtonsData>
