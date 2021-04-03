@@ -32,14 +32,15 @@ const Editor = () => {
     text: text,
   };
 
+  const config = {
+    Accept: "application/json",
+    headers: {
+      Authorization: `Bearer ${UserData.token}`,
+    },
+  };
+
   async function handleDeleteNote(id: string) {
     if (text.length >= 1 || title.length >= 1) {
-      const config = {
-        Accept: "application/json",
-        headers: {
-          Authorization: `Bearer ${UserData.token}`,
-        },
-      };
       await api
         .delete("note/delete/" + id, config)
         .then((response) => {
@@ -66,13 +67,6 @@ const Editor = () => {
 
   async function handleUpdateNote(id: string) {
     if (text.length >= 1 || title.length >= 1) {
-      const config = {
-        Accept: "application/json",
-        headers: {
-          Authorization: `Bearer ${UserData.token}`,
-          "Content-Type": "application/json",
-        },
-      };
       await api
         .put("note/update/" + id, expression, config)
         .then((response) => {
@@ -94,13 +88,6 @@ const Editor = () => {
 
   async function handleSendNote() {
     if (text.length >= 1 || title.length >= 1) {
-      const config = {
-        Accept: "application/json",
-        headers: {
-          Authorization: `Bearer ${UserData.token}`,
-          "Content-Type": "application/json",
-        },
-      };
       await api
         .post("note/create", expression, config)
         .then((response) => {
@@ -133,7 +120,7 @@ const Editor = () => {
       >
         <Button
           onPress={() => {
-            id == "" ? handleSendNote : handleUpdateNote(id);
+            id == "" ? handleSendNote() : handleUpdateNote(id);
           }}
         >
           <Text style={{ textAlign: "center", color: "#fff" }}>Salvar</Text>

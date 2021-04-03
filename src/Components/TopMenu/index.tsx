@@ -1,5 +1,5 @@
 import React from "react";
-import { Alert, ToastAndroid } from "react-native";
+import { Alert } from "react-native";
 import {
   MenuBar,
   AboutButton,
@@ -11,23 +11,22 @@ import {
   ButtonSendText,
 } from "./styles";
 import { Feather as Icon } from "@expo/vector-icons";
-import { View } from "react-native";
-import api from "../../services/api";
-import UserData from "../../Class/UserData";
-import NoteData from "../../Class/NoteData";
 
 import { useNavigation } from "@react-navigation/native";
 
 const TopMenu = () => {
   const navigator = useNavigation();
 
-  function handleLogout() {
-    navigator.navigate("Login");
+  function handleAbout() {
+    Alert.alert(
+      "Alerta!",
+      "Esteja ciente que ao fazer atualizações no sistema é necessário clicar nos botões de atualizar para visualiza-las."
+    );
   }
 
   return (
     <MenuBar>
-      <AboutButton onPress={handleLogout}>
+      <AboutButton onPress={handleAbout}>
         <Icon style={{ color: "white" }} name="info" size={20} />
       </AboutButton>
       <Logo>

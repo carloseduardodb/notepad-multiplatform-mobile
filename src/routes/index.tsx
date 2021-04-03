@@ -19,9 +19,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 //components
 import ButtonAdd from "../Components/ButtonAdd";
 
-//global
-import States from "../Class/States";
-
 const AppStack = createStackNavigator();
 const AppBottomTab = createBottomTabNavigator();
 
@@ -30,7 +27,7 @@ function MyTabsButton() {
     <AppBottomTab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color, size }) => {
-          let iconName;
+          let iconName: any;
 
           switch (route.name) {
             case "Home":

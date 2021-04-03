@@ -23,7 +23,7 @@ export const ButtonsData = styled.TouchableOpacity`
   elevation: 3;
 `;
 
-export const ButtonLogout = styled.TouchableOpacity`
+export const Button = styled.TouchableOpacity`
   background-color: #f6644d;
   padding: 10px 20px;
   width: 80%;

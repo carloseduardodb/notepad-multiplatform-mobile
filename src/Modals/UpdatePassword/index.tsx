@@ -11,6 +11,8 @@ import {
 } from "react-native";
 import { Feather as Icon } from "@expo/vector-icons";
 import { ButtonsData } from "./styles";
+import UserData from "../../Class/UserData";
+import api from "../../services/api";
 
 interface forgoutPasswordProps extends ModalProps {
   status: boolean;
@@ -21,6 +23,37 @@ const ModalPasswordName: React.FC<forgoutPasswordProps> = ({
   ...rest
 }) => {
   const [modalVisible, setModalVisible] = useState(false);
+
+  const [rpPassword, setRpPassword] = useState("");
+  const [password, setPassword] = useState("");
+
+  function handleUpdatePassword() {
+    if (rpPassword.length < 4 || password.length < 8) {
+      Alert.alert("Senhas muito pequenas!");
+      return;
+    }
+    const user = {
+      rpPassowrd: rpPassword,
+      password: password,
+    };
+
+    const config = {
+      Accept: "application/json",
+      headers: {
+        Authorization: `Bearer ${UserData.token}`,
+        "Content-Type": "application/json",
+      },
+    };
+    api
+      .put("user/update/password", user, config)
+      .then((response) => {
+        Alert.alert("Sucesso ao atualizar senha!");
+      })
+      .catch((error) => {
+        Alert.alert("Erro", error.message);
+      });
+  }
+
   return (
     <>
       <View style={styles.centeredView}>
@@ -60,7 +93,10 @@ const ModalPasswordName: React.FC<forgoutPasswordProps> = ({
               <View
                 style={{ justifyContent: "flex-end", alignItems: "flex-end" }}
               >
-                <TouchableOpacity style={[styles.button, styles.buttonSend]}>
+                <TouchableOpacity
+                  onPress={handleUpdatePassword}
+                  style={[styles.button, styles.buttonSend]}
+                >
                   <Text style={styles.textStyle}>Atualizar</Text>
                 </TouchableOpacity>
               </View>

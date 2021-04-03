@@ -12,9 +12,22 @@ import {
 import { Feather as Icon } from "@expo/vector-icons";
 import UserData from "../../Class/UserData";
 import { ButtonsData } from "./styles";
+import api from "../../services/api";
 
 interface forgoutPasswordProps extends ModalProps {
   status: boolean;
+}
+
+interface data {
+  status: string;
+  user: {
+    id: number;
+    name: string;
+    email: string;
+    email_verified_at: null | boolean;
+    created_at: Date;
+    updated_at: Date;
+  };
 }
 
 const ModalUpdateName: React.FC<forgoutPasswordProps> = ({
@@ -22,6 +35,38 @@ const ModalUpdateName: React.FC<forgoutPasswordProps> = ({
   ...rest
 }) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+
+  function handleUpdateName() {
+    if (name.length < 4 || password.length < 8) {
+      Alert.alert("Nome ou senha muito pequenos!");
+      return;
+    }
+    const user = {
+      name: name,
+      password: password,
+    };
+
+    const config = {
+      Accept: "application/json",
+      headers: {
+        Authorization: `Bearer ${UserData.token}`,
+        "Content-Type": "application/json",
+      },
+    };
+    api
+      .put("user/update/name", user, config)
+      .then((response) => {
+        Alert.alert("Sucesso ao atualizar usuário!");
+      })
+      .catch((error) => {
+        Alert.alert("Erro", error.message);
+      });
+  }
+
+  const user = UserData.user.data as data;
+
   return (
     <>
       <View style={styles.centeredView}>
@@ -45,13 +90,27 @@ const ModalUpdateName: React.FC<forgoutPasswordProps> = ({
 
               <Text>Seu novo nome:</Text>
               <TextInput
+                onChangeText={setName}
+                value={name}
+                placeholder="Seu novo nome!"
+                style={{ borderBottomColor: "#F6644D", borderBottomWidth: 2 }}
+              />
+
+              <Text style={{ marginTop: 20 }}>Confirme sua senha:</Text>
+              <TextInput
+                onChangeText={setPassword}
+                value={password}
+                secureTextEntry
                 placeholder="Seu novo nome!"
                 style={{ borderBottomColor: "#F6644D", borderBottomWidth: 2 }}
               />
               <View
                 style={{ justifyContent: "flex-end", alignItems: "flex-end" }}
               >
-                <TouchableOpacity style={[styles.button, styles.buttonSend]}>
+                <TouchableOpacity
+                  onPress={handleUpdateName}
+                  style={[styles.button, styles.buttonSend]}
+                >
                   <Text style={styles.textStyle}>Atualizar</Text>
                 </TouchableOpacity>
               </View>
@@ -66,7 +125,7 @@ const ModalUpdateName: React.FC<forgoutPasswordProps> = ({
       >
         <Text style={styles.text}>Nome</Text>
         <View style={styles.align}>
-          <Text style={styles.text}>{UserData.user.data.user.name}</Text>
+          <Text style={styles.text}>{user.user.name}</Text>
           <Icon color="#fff" name="chevron-right" size={20} />
         </View>
       </ButtonsData>
