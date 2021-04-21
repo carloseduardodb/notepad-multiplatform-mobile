@@ -53,18 +53,22 @@ Telas de alterações com conirmação de senha.<hr>
 ### Passos
 
 <ul> 
-<li>Instale o <a href="https://docs.expo.io/get-started/installation/">Git</a> em sua máquina</li>
+  <li>Instale o <a href="https://git-scm.com/downloads">Git</a> em sua máquina
+  </li>
   <li>Instale o <a href="https://nodejs.org/en/download/">NodeJS</a> em sua máquina</li> 
   <li>Instale o <a href="https://docs.expo.io/get-started/installation/">Expo</a> em sua máquina</li> 
+  <li>Entre na sua pasta de projetos e rode o comando abaixo:</li> 
+  <li>git clone https://github.com/carloseduardodb/notepad-multiplatform-mobile.git</li> 
+  <li>Após isso rode o comando npm install ou yarn install</li>
 </ul>
 
 ### Tecnologias
 
 <p>As seguintes ferramentas foram usadas na construção do projeto:</p>
 <ul>
-    <li>HTML</li>
-    <li>CSS</li>
-    <li>SASS</li>
+    <li>React Native</li>
+    <li>Expo</li>
+    <li>Typescript</li>
 </ul>
 
 ### Autor
